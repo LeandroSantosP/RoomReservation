@@ -3,6 +3,7 @@ package org.example.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class Reservation {
     private final UUID reservationId;
     private final UUID roomId;
@@ -28,7 +30,7 @@ public class Reservation {
         return new Reservation(reservationId, roomId, email, status, checkInDate, checkOutDate, duration, price);
     }
     public void calculate(Room room) {
-        this.duration = Duration.between(this.checkOutDate, this.checkInDate).toDays();
+        this.duration = Math.abs(Duration.between(this.checkOutDate, this.checkInDate).toDays());
         this.price = this.duration * room.getPrice();
     }
 }

@@ -19,6 +19,6 @@ public class ReservationRepositoryInMemory implements ReservationRepository {
         if (reservation == null){
             throw new RuntimeException("Reservation Not Founded!");
         }
-        return reservation;
+        return new Reservation(reservation.getReservationId(), reservation.getRoomId(), reservation.getEmail(), reservation.getStatus(), reservation.getCheckInDate(), reservation.getCheckOutDate(), reservation.getDuration(), reservation.getPrice());
     }
 }

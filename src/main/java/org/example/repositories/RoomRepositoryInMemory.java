@@ -17,6 +17,6 @@ public class RoomRepositoryInMemory implements RoomRepository {
         if (room == null){
             throw new RuntimeException("Room Not Founded!");
         }
-        return room;
+        return new Room(room.getRoomId(), room.getType(),room.getPrice());
     }
 }
