@@ -25,7 +25,6 @@ public class MakeReservationTest {
         );
         var outputMakeReservation = makeReservation.execute(inputMakeReservation);
         assertNotNull(outputMakeReservation.reservationId());
-
         final GetReservation getReservation = new GetReservation(reservationRepository);
         final var getReservationOutput = getReservation.execute(outputMakeReservation.reservationId());
         assertNotNull(getReservationOutput);
