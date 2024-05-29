@@ -32,6 +32,30 @@ public class MakeReservationTest {
         assertEquals("john@gmail.com", getReservationOutput.email());
         assertEquals("active", getReservationOutput.status());
         assertEquals(4, getReservationOutput.duration());
-        assertEquals(400.00, getReservationOutput.price());
+        assertEquals(4000.00, getReservationOutput.price());
+    }
+
+
+    @Test
+    void shouldMakeARoomReservationWithHourPayment(){
+        var roomRepository = new RoomRepositoryInMemory();
+        var reservationRepository = new ReservationRepositoryInMemory();
+        var makeReservation = new MakeReservation(roomRepository, reservationRepository);
+        var inputMakeReservation = new MakeReservation.Input(
+                "john2@gmail.com",
+                LocalDateTime.parse("2023-03-05T10:00:00"),
+                LocalDateTime.parse("2023-03-05T12:00:00"),
+                UUID.fromString("6606e3f1-d486-46d6-9aa3-5223c3514432")
+        );
+        var outputMakeReservation = makeReservation.execute(inputMakeReservation);
+        assertNotNull(outputMakeReservation.reservationId());
+        final GetReservation getReservation = new GetReservation(reservationRepository);
+        final var getReservationOutput = getReservation.execute(outputMakeReservation.reservationId());
+        assertNotNull(getReservationOutput);
+        assertEquals(UUID.fromString("6606e3f1-d486-46d6-9aa3-5223c3514432"), getReservationOutput.roomId());
+        assertEquals("john2@gmail.com", getReservationOutput.email());
+        assertEquals("active", getReservationOutput.status());
+        assertEquals(2, getReservationOutput.duration());
+        assertEquals(200.00, getReservationOutput.price());
     }
 }

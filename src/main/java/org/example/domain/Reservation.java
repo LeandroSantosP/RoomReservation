@@ -30,7 +30,8 @@ public class Reservation {
         return new Reservation(reservationId, roomId, email, status, checkInDate, checkOutDate, duration, price);
     }
     public void calculate(Room room) {
-        this.duration = Math.abs(Duration.between(this.checkOutDate, this.checkInDate).toDays());
-        this.price = this.duration * room.getPrice();
+        final var result = PriceCalculatorFactory.create(room.getType()).calculate(this.checkInDate, this.checkOutDate, room.getPrice());
+        this.duration = result.duration();
+        this.price = result.price();
     }
 }
