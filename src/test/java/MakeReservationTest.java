@@ -1,6 +1,5 @@
 import org.example.GetReservation;
 import org.example.MakeReservation;
-import org.example.domain.Reservation;
 import org.example.repositories.ReservationRepositoryInMemory;
 import org.example.repositories.RoomRepositoryInMemory;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,6 @@ public class MakeReservationTest {
         assertEquals(4, getReservationOutput.duration());
         assertEquals(4000.00, getReservationOutput.price());
     }
-
 
     @Test
     void shouldMakeARoomReservationWithHourPayment(){

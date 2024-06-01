@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 public abstract  class PriceCalculator {

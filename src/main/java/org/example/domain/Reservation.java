@@ -1,11 +1,8 @@
 package org.example.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -21,7 +18,6 @@ public class Reservation {
     private final LocalDateTime checkOutDate;
     private long duration;
     private Double price;
-
     public static Reservation create(UUID roomId, String email,LocalDateTime checkInDate, LocalDateTime checkOutDate) {
         var reservationId = UUID.randomUUID();
         final long duration = 0;
