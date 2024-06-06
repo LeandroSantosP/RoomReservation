@@ -1,7 +1,9 @@
-import org.example.GetReservation;
-import org.example.MakeReservation;
+import org.example.application.GetReservation;
+import org.example.application.MakeReservation;
+import org.example.dtos.MakeReservationInput;
 import org.example.repositories.ReservationRepositoryInMemory;
 import org.example.repositories.RoomRepositoryInMemory;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -16,16 +18,18 @@ public class MakeReservationTest {
         var roomRepository = new RoomRepositoryInMemory();
         var reservationRepository = new ReservationRepositoryInMemory();
         var makeReservation = new MakeReservation(roomRepository, reservationRepository);
-        var inputMakeReservation = new MakeReservation.Input(
+        var inputMakeReservation = new MakeReservationInput(
                 "john@gmail.com",
                 LocalDateTime.parse("2023-03-01T10:00:00"),
                 LocalDateTime.parse("2023-03-05T10:00:00"),
                 UUID.fromString("141154cf-5158-4657-b17c-0a275d2d9545")
         );
         var outputMakeReservation = makeReservation.execute(inputMakeReservation);
+
         assertNotNull(outputMakeReservation.reservationId());
         final GetReservation getReservation = new GetReservation(reservationRepository);
         final var getReservationOutput = getReservation.execute(outputMakeReservation.reservationId());
+
         assertNotNull(getReservationOutput);
         assertEquals(UUID.fromString("141154cf-5158-4657-b17c-0a275d2d9545"), getReservationOutput.roomId());
         assertEquals("john@gmail.com", getReservationOutput.email());
@@ -39,7 +43,7 @@ public class MakeReservationTest {
         var roomRepository = new RoomRepositoryInMemory();
         var reservationRepository = new ReservationRepositoryInMemory();
         var makeReservation = new MakeReservation(roomRepository, reservationRepository);
-        var inputMakeReservation = new MakeReservation.Input(
+        var inputMakeReservation = new MakeReservationInput(
                 "john2@gmail.com",
                 LocalDateTime.parse("2023-03-05T10:00:00"),
                 LocalDateTime.parse("2023-03-05T12:00:00"),

@@ -19,8 +19,8 @@ class HourPriceCalculator extends PriceCalculator {
 
 public class PriceCalculatorFactory {
     public static PriceCalculator create(String type) {
-        if (type.equals("day")) return  new DayPriceCalculator();
-        if (type.equals("hour")) return  new HourPriceCalculator();
+        if (type.equals("day")) return new DayPriceCalculator();
+        if (type.equals("hour")) return new HourPriceCalculator();
         throw new RuntimeException();
     }
 }

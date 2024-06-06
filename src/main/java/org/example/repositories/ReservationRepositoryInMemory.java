@@ -2,11 +2,14 @@ package org.example.repositories;
 
 import org.example.domain.Reservation;
 import org.example.domain.Room;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+
+@Repository
 public class ReservationRepositoryInMemory implements ReservationRepository {
     Map<UUID, Reservation> reservations = new HashMap<>();
     @Override

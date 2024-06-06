@@ -1,15 +1,15 @@
-package org.example;
+package org.example.application;
 
 import org.example.domain.Reservation;
 import org.example.repositories.ReservationRepository;
-import org.example.repositories.RoomRepository;
-
+import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+
+@Service
 public class GetReservation {
     private final ReservationRepository reservationRepository;
-
     public GetReservation(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }

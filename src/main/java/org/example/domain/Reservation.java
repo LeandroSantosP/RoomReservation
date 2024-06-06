@@ -19,6 +19,7 @@ public class Reservation {
     private long duration;
     private Double price;
     public static Reservation create(UUID roomId, String email,LocalDateTime checkInDate, LocalDateTime checkOutDate) {
+
         var reservationId = UUID.randomUUID();
         final long duration = 0;
         final double price = 0;

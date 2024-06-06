@@ -1,9 +1,11 @@
 package org.example.repositories;
 
 import org.example.domain.Room;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class RoomRepositoryInMemory implements RoomRepository {
     Map<UUID, Room> rooms = new HashMap<>();
     public  RoomRepositoryInMemory(){
